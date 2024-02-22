@@ -16,24 +16,22 @@ function App() {
     fetchCurrentWeather()
   }, [])
 
-  const URL = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-61431FA0-9546-4DA7-A3FF-68D879357C6A&limit=5&stationId=467410`
+  const URL = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-61431FA0-9546-4DA7-A3FF-68D879357C6A&limit=5&StationId=467410`
 
   function fetchCurrentWeather() {
     axios.get(URL)
       .then((response) => {
         // console.log(response.data.records.location[0])
 
-        const weatherData = response.data.records.location[0]
-        // console.log(typeof weatherData)
-        // console.log(typeof weatherData.weatherElement)
-        // console.log(weatherData.locationName)
-        // console.log(weatherData.locationName)
-        // console.log(weatherData.weatherElement[4])
+        const weatherData = response.data.records.Station[0]
+        
+        console.log('weatherData',weatherData)
+        
         setCurrentWeather({
-          cityName: weatherData.locationName,
-          temperature: weatherData.weatherElement[3].elementValue,
-          weatherStatus: weatherData.weatherElement[20].elementValue,
-          humidity: Number(weatherData.weatherElement[4].elementValue) * 100
+          cityName: weatherData.StationName,
+          temperature: weatherData.WeatherElement.AirTemperature,
+          weatherStatus: weatherData.WeatherElement.Weather,
+          humidity: Number(weatherData.WeatherElement.RelativeHumidity) 
         })
       })
       .catch((error) => {
