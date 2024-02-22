@@ -16,7 +16,7 @@ function App() {
     fetchCurrentWeather()
   }, [])
 
-  const URL = `https://opendata.cwb.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-61431FA0-9546-4DA7-A3FF-68D879357C6A&limit=5&stationId=467410`
+  const URL = `https://opendata.cwa.gov.tw/api/v1/rest/datastore/O-A0003-001?Authorization=CWB-61431FA0-9546-4DA7-A3FF-68D879357C6A&limit=5&stationId=467410`
 
   function fetchCurrentWeather() {
     axios.get(URL)
